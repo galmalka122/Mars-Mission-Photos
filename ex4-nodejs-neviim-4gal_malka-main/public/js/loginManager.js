@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             functions.trimFormValues([mail, pass]);//trim values
-
+               mail.value = mail.value.toLowerCase();
+            
             //validate form input
             if (await validators.validateForm(validations))
                 document.getElementById('login-form').submit();
