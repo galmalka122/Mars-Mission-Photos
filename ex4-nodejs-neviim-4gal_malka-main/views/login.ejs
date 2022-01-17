@@ -1,0 +1,48 @@
+<% if(typeof created !== "undefined"){%>
+<div class="row justify-content-center">
+    <div class="col-auto mt-2">
+        <div class="alert alert-primary" role="alert">
+            you are registered
+        </div>
+    </div>
+</div>
+<%}%>
+<div class="row justify-content-center">
+    <div class="col-auto mt-2">
+        <form action="/login" method="POST" id="login-form">
+            <div class="row g-2">
+                <div class="col my-2">
+                    <input type="text" id="login-email"
+                           class="form-control <% if(typeof mailErr !== 'undefined'){ %> <%= `is-invalid` %> <% } %>"
+                    <% if(typeof curEmail !== 'undefined'){ %> <%= curEmail %>
+                            <% } %>
+                           placeholder="Email" autocomplete="email"
+                           name="loginEmail" aria-label="email">
+                    <div class="invalid-feedback">
+                        <% if(typeof mailErr !== 'undefined'){ %> <%= mailErr %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="col my-2">
+                <input type="password"
+                       class="form-control <% if(typeof passErr !== 'undefined'){ %> <%= 'is-invalid' %> <% } %>"
+                       placeholder="Password" aria-label="Password"
+                       aria-describedby="Password" name="loginPassword" id="login-password" autocomplete="current-password">
+                <div class="invalid-feedback">
+                    <% if(typeof passErr !== 'undefined'){ %> <%= passErr %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="text-center pt-2">
+                <button type="submit" class="btn btn-secondary">Submit</button>
+                <button class="btn btn-secondary" form="login-form" type="reset">clear</button>
+            </div>
+
+        </form>
+        <div class="col auto text-center mt-3">
+            Not a member yet? <a href='/register'>sign up</a>
+        </div>
+
+    </div>
+</div>

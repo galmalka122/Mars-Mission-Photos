@@ -1,0 +1,21 @@
+<div class="row justify-content-center css-off">
+    <div class="col-auto mt-2 text-center">
+        <h1 id="addDotsHere">redirecting to <%= unauthorized.url %> </h1>
+    </div>
+</div>
+<div class="row justify-content-center css-off">
+    <div class="col-auto mt-2 css-off">
+        <div class="alert alert-danger css-off" role="alert">
+            <h1> <%= unauthorized.message %></h1>
+        </div>
+    </div>
+</div>
+<script>document.addEventListener('DOMContentLoaded', () => {
+        let element = document.getElementById('addDotsHere');
+        let dots = 0;
+        setInterval(function () {
+            element.innerText += '.';
+            dots === 3 ? location.replace('<%= unauthorized.url %>') : dots += 1;
+        }, 1000)
+    })
+</script>

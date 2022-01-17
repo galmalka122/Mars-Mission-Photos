@@ -1,0 +1,39 @@
+<% if(typeof mailErr !== 'undefined'){ %>
+<div class="row justify-content-center css-off">
+    <div class="col-auto mt-2 css-off">
+        <div class="alert alert-danger css-off" role="alert">
+            <%= mailErr %>
+        </div>
+    </div>
+</div>
+<% }%>
+<div class="row justify-content-center">
+    <div class="col-auto mt-3">
+        <form action="/register/password" method="POST" id="first-register-form">
+            <div class="row g-2">
+                <div class="col">
+                    <input type="text" id="first-name" class="form-control" placeholder="First name"
+                           name="firstName" aria-label="First name" autocomplete="given-name">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="col">
+                    <input type="text" id="last-name" class="form-control" placeholder="Last name"
+                           name="lastName" aria-label="Last name" autocomplete="family-name">
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="my-3">
+                <input type="text" class="form-control" placeholder="Email address" aria-label="email"
+                       aria-describedby="email-register" name="email" id="email-register" autocomplete="email">
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-secondary" form="first-register-form">Submit</button>
+                <button class="btn btn-secondary" form="first-register-form" type="reset">clear</button>
+            </div>
+        </form>
+        <div class="col-auto text-center mt-3">
+        already a member? <a href='/login'>sign in</a>
+        </div>
+    </div>
+</div>

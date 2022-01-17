@@ -1,0 +1,18 @@
+<% if(typeof curUser !== 'undefined'){ %>
+    <%- include("./nasaSearch.ejs",{savedPhotos: savedPhotos})%>
+
+<% }else{ %>
+    <div class="row justify-content-center">
+        <div class="h1 col-auto">NASA Mars Rovers Image API</div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="h3 col-auto text-center">
+            this website is a search engine for NASA's mars rovers images<br>
+            it collects the data from the search fields and sends a fetch<br>
+            request to NASA's server to bring the desired photos.<br>
+            the user than can open each photo in new tab or save a list<br>
+            of photos to view in a bootstrap carousel mode.<br>
+            Please log in ore register a new account to start.
+        </div>
+    </div>
+<% } %>

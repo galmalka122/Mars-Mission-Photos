@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <% if(typeof script !== 'undefined'){ %>
+        <%- script %>
+    <% } %>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <title>
+        <% if(typeof title !== 'undefined'){ %>
+            <%= title %>
+        <% } %>
+    </title>
+</head>
+<body>
+<div class="container-fluid">
+    <%- include("../partials/navbar.ejs") %>
+    <%- include("../partials/logo.ejs") %>
+    <% if(typeof curUser !== 'undefined'){ %>
+        <%- include("../partials/welcome.ejs", {fullName: fullName}) %>
+    <% } %>
+    <%- body %>
+
+    <div class="spinner-border loader-center" id="loader" style="display: none"></div>
+    <%- include("../partials/errorModal.ejs") %>
+</div>
+</body>
+</html>

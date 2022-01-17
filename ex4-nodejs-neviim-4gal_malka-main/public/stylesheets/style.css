@@ -1,0 +1,85 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#photo-carousel {
+    display: none;
+}
+
+.invalid-feedback{
+    text-align: center;
+}
+
+.spinner-border.loader-center {
+    display: none;
+}
+
+#saved-images {
+
+    height: 250px;
+    overflow-x: hidden;
+    overflow-y: scroll
+
+}
+
+.css-off {
+    text-shadow: unset !important;
+}
+
+
+.card-title{
+    text-shadow: 0 0 black;
+}
+
+input {
+    text-align: center;
+}
+
+.form-center {
+
+    position: fixed;
+    left: 25%;
+
+}
+
+#logo {
+    color: azure;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    padding-top: 30px;
+    background: url("../images/logo.jpg") no-repeat;
+    background-position-y: center;
+    background-size: 100vw;
+}
+
+.loader-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+.modal-content {
+    background: url("../images/modal_background.jpg");
+    background-size: cover;
+    color: azure;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    text-align: center;
+}
+
+.modal-title {
+    width: 100% !important;
+}
+
+.btn-outline-info {
+    border-color: lightslategray;
+    color: lightslategray;
+
+}
+
+.modal-footer {
+    justify-content: center;
+
+}
+
+a {
+  color: #00B7FF;
+}

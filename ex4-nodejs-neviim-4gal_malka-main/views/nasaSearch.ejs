@@ -1,0 +1,126 @@
+<div id="nasa-search">
+<div class="row">
+    <div class="col-md-6">
+        <div class="alert alert-info" style="border: unset;padding: 3px">
+            <div class="h3 fw-bold px-2">Search for image:</div>
+        </div>
+        <form id="myForm">
+            <div class="mb-3 pt-2">
+                <label for="dateInput">Date (YYYY-MM-DD) or Sol</label>
+                <input class="form-control input-sm" id="dateInput" type="text">
+                <div class="invalid-feedback">
+                </div>
+            </div>
+            <div class="mb-3 pt-2">
+                <label for="roverInput">Select Rover</label>
+                <select aria-label="rover-form" class="form-select" id="roverInput">
+                    <option selected value="">Open this select menu</option>
+                    <option value="Curiosity">Curiosity</option>
+                    <option value="Opportunity">Opportunity</option>
+                    <option value="Spirit">Spirit</option>
+                </select>
+                <div class="invalid-feedback">
+                </div>
+            </div>
+            <div class="mb-3 pt-2">
+                <label for="cameraInput">Select Camera</label>
+                <select aria-label="cameraSelect" class="form-select" id="cameraInput">
+                    <option selected value=''>Choose a camera</option>
+                    <option value="FHAZ">FHAZ</option>
+                    <option value="RHAZ">RHAZ</option>
+                    <option value="MAST">MAST</option>
+                    <option value="CHEMCAM">CHEMCAM</option>
+                    <option value="MAHLI">MAHLI</option>
+                    <option value="MARDI">MARDI</option>
+                    <option value="NAVCAM">NAVCAM</option>
+                    <option value="PANCAM">PANCAM</option>
+                    <option value="MINITES">MINITES</option>
+                </select>
+                <div class="invalid-feedback">
+                </div>
+            </div>
+        </form>
+        <div class="py-3">
+            <button class="btn btn-outline-primary" id="confirm" type="button">search</button>
+            <button class="btn btn-outline-primary" form="myForm" type="reset">clear</button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="alert alert-primary" style="border: unset;padding: 3px">
+            <div class="h3 fw-bold px-2">Saved images:</div>
+        </div>
+        <div class="pb-3">
+            <button class="btn btn-outline-primary" id="slide-start" type="button">Start slide show</button>
+            <button class="btn btn-outline-primary" id="slide-stop" type="button">Stop slide show</button>
+            <button class="btn btn-outline-primary" id="clear-saved-list" type="button">Clear all</button>
+        </div>
+
+        <div class="pb-3" id="saved-images">
+            <% savedPhotos.forEach(function (element, index) { %>
+                <div class="row savedPhotos">
+                    <div class="col-auto">
+                        <button type="button" class="btn-close delete-photo" aria-label="Close"
+                                data-delete-id="<%= element.photoID %>" id="<%= element.photoID %>" data-index="<%= index + 1 %>"></button>
+                    </div>
+                    <div class="col">
+                        <p class="h6" data-id="<%= element.photoID %>" data-index="<%= index + 1 %>"><%= index + 1 %>.<a
+                                    href="<%= element.url %>"
+                                    target="_blank">Image id:
+                                <%= element.photoID %></a></p>
+                        <p class="h6 px-2">Earth date: <%= element.earthDate %>, Sol: <%= element.sol %>,
+                            Camera: <%= element.camera %></p>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+<div class="row pb-3">
+    <div class="col-10 col-lg-6 m-auto" id="photo-carousel">
+        <div id="photoCarousel" class="carousel">
+            <div class="carousel-indicators">
+                <% savedPhotos.forEach(function (element, index) { %>
+                    <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="<%= index %>"
+                    <% if(index === 0){ %>class="saved-carousel-ind active" aria-current="true"
+                    <% }else{ %>class="saved-carousel-ind"<% } %>aria-label="Slide <%= index %>">
+                    </button>
+                <% }) %>
+            </div>
+
+            <div class="carousel-inner">
+                <% savedPhotos.forEach(function (element, index) { %>
+                    <div class="carousel-item<% if(index === 0){ %> active<% } %> saved-carousel-item"
+                         data-index="<%= index %>">
+                        <img src="<%= element.url %>"
+                             class="d-block img-responsive w-100" alt="marsphoto">
+                        <div class="carousel-caption d-block ">
+                            <h3><%= element.camera %></h3>
+                            <h3><%= element.earthDate %></h3>
+                            <button class="btn btn-primary full-size-carousel" data-carousel-url="<%= element.url %>"
+                                    type="button">Full
+                                size
+                            </button>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#photoCarousel" type="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" data-bs-target="#photoCarousel" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" data-bs-target="#photoCarousel" type="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="alert alert-info" style="border: unset;padding: 3px">
+        <div class="h3 fw-bold px-2">Search results:</div>
+    </div>
+</div>
+<div class="row" id="photos-search-result">
+
+</div>
+</div>
