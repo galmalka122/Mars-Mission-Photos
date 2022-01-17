@@ -67,7 +67,7 @@ module.exports.password = function (req, res, next) {
     res.setHeader('referer', req.get('origin') + '/register/password');
     let a = new Date();
     a.setSeconds(a.getSeconds() + 60);
-    res.cookie('passwordTimer', a.getTime(), {maxAge: 60 * 1000, secure: true});
+    res.cookie('passwordTimer', a.getTime(), {maxAge: 60 * 1000});
     req.session.user = req.body;
     return next();
 
