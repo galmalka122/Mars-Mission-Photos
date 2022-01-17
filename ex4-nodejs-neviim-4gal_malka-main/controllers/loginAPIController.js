@@ -32,7 +32,7 @@ module.exports.authenticateUser = async (req, res,) => {
             //check if password matches mail account
         } else if (req.body["loginPassword"] !== result.password) {
             req.session.passErr = `Password incorrect. Please try again`;
-            return res.redirect('/login');
+            return res.redirect('/');
             //log the user in
         } else {
             const {['password']: deletedKey, ...resultWithoutPass} = result;
