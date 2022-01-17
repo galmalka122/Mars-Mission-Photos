@@ -11,7 +11,7 @@ router.get('/', controller.register, (req, res) => {
 })
 
 //register second step password form route for refresh
-router.get('/password', controller.password, (req, res) => {
+router.get('/password', controller.passwordGet, (req, res) => {
 
     res.render('password');
 })
