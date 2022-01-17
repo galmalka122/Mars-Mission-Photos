@@ -62,24 +62,24 @@ module.exports.register = function (req, res, next) {
 module.exports.password = function (req, res, next) {
 
     //protect from refreshing page + set the timer cookie
-    if (!req.cookies['passwordTimer'] && req.method === 'POST' && req.baseUrl === '/register') {
-        res.locals.title = 'Password';
-        res.locals.script = `<script type="module" src="/js/passwordManager.js"></script>`;
-        res.setHeader('referer', req.get('origin') + '/register/password');
-        let a = new Date();
-        a.setSeconds(a.getSeconds() + 60);
-        res.cookie('passwordTimer', a.getTime(), {maxAge: 60 * 1000, secure: true});
-        req.session.user = req.body;
-        return next();
-    }
+    res.locals.title = 'Password';
+    res.locals.script = `<script type="module" src="/js/passwordManager.js"></script>`;
+    res.setHeader('referer', req.get('origin') + '/register/password');
+    let a = new Date();
+    a.setSeconds(a.getSeconds() + 60);
+    res.cookie('passwordTimer', a.getTime(), {maxAge: 60 * 1000, secure: true});
+    req.session.user = req.body;
+    return next();
+
+}
+
+module.exports.passwordGet = function (req, res, next) {
+
     //check for cookie (get request)
-    if (req.cookies['passwordTimer']) {
-        res.locals.title = 'Password';
-        res.locals.script = `<script type="module" src="/js/passwordManager.js"></script>`;
-        return next();
-    }
-    res.locals.unauthorized = {message: 'Access denied', url: '/register'};
-    return req.session.destroy(res.status(401).render(`./partials/unauthorized`));
+    res.locals.title = 'Password';
+    res.locals.script = `<script type="module" src="/js/passwordManager.js"></script>`;
+    return next();
+
 }
 
 module.exports.onSuccess = function (req, res) {
