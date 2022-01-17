@@ -135,7 +135,7 @@ module.exports.preventPage = async function(req, res, next) {
     if (req.session.logged && req.baseUrl !== '/logout' ||
         !req.session.logged && req.url === '/logout' ) {
         res.locals.unauthorized = {message: 'You are already logged in.',url:'/'};
-        return res.redirect(`/register`);
+        return res.redirect(`/`);
     }
 
     next();
