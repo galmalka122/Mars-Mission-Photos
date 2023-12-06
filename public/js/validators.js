@@ -1,6 +1,5 @@
 export const validators = (function () {
 
-
     /**
      * checks if value has only letters
      * @param value

@@ -1,36 +1,52 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=7654907&assignment_repo_type=AssignmentRepo)
 # Mars Mission Photos
-Mars photos search egine with login system and saved images database
 
-<h1>Gal Malka</h1>
-<p>Email: galma@edu.hac.ac.il</p>
+The Mars Project is a web application that allows users to explore Mars photos obtained from NASA's API. Users can register, log in, search for Mars rover photos, save their favorite photos, and more.
 
-<h1>Initialization</h1>
-<p>
-Open console, execute : npm install
-</p>
+## Features
 
-<h1>Execution</h1>
-<p>Use the configuration in Webstorm (top right 'play' button) or: open terminal,
-and execute : "npm install", "npx sequelize-cli db:migrate", "node bin/www" </p>
-<p>
-Then open your browser at http://localhost:3000
-</p>
+- User authentication and registration
+- Search for Mars rover photos using NASA's API
+- Save and manage favorite photos
+- User-friendly interface
 
-<h1>Assumptions</h1>
-<p>
-  
-</p>
+## Installation
 
-<h1>Notes</h1>
-<p>
-implemented a home page as landing page instead of login page.
-</p>
-<p>
-login / register / sign out system is implemented in navbar. when user has logged in
-hes mail shown in the right navbar. then he can press on the mail to open modal information
-which includes the mail, full name and sign out button.
-</p>
-<p>
-failure to fetch from nasa's server will prevent showing the search form until problem fixed
-</p>
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/mars-project.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd mars-project
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Set up your database and configure the database connection.
+
+5. Configure your nasa API key in the constant.js file
+
+## Usage
+
+1. Start the application:
+
+   ```bash
+   npm start
+   ```
+
+2. Open your browser and navigate to http://localhost:3000.
+
+3. Explore Mars photos, register, log in, and enjoy the features!
+
+## Dependencies
+
+* Node.js
+* Express
+* Sequelize

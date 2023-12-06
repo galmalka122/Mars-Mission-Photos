@@ -1,32 +1,33 @@
-import {createElements} from './createElements.js';
-import {validators} from './validators.js';
-import {constants} from './constant.js';
-import {functions} from "./functions.js";
+import { createElements } from './createElements.js';
+import { validators } from './validators.js';
+import { constants } from './constant.js';
+import { functions } from "./functions.js";
 
+// Object to store data about rovers fetched from NASA's API
 let roversData = {};
 
+// API module containing various functions for interacting with the server
 export const api = (function () {
+    
+    /**
+     * AJAX function to check if an email is already registered
+     * @param {string} mail - The email value
+     * @returns {Promise} - Validation status + message
+     */
+    const mailCheckAPI = async function (mail) {
+        functions.loader('ON');
+        const result = await fetch(`/register/mailCheck?email=${mail}`, {
+            method: 'POST'
+        });
+        await functions.fetchStatus(result, () => { location.replace('/register') });
+        functions.loader();
+        return await result.json();
+    }
 
 
         /**
-         * ajax to check if mail already registered
-         * @param mail - the mail value
-         * @returns {Promise<*>} - validation status + message
-         */
-        const mailCheckAPI = async function (mail) {
-            functions.loader('ON');
-            const result = await fetch(`/register/mailCheck?email=${mail}`, {
-                method: 'POST'
-            })
-            await functions.fetchStatus(result,()=>{location.replace('/register')});
-            functions.loader();
-            return await result.json();
-        }
-
-
-        /**
-         * a function to fetch photos from nasa's api
-         * @returns {Promise<boolean>} - if resolved: a json object with all photos data, if rejected: raises an error
+         * Function to fetch photos from NASA's API
+         * @returns {Promise} - If resolved: a JSON object with all photos data, if rejected: raises an error
          */
         const fetchPhotos = async function () {
 
@@ -76,8 +77,8 @@ export const api = (function () {
         }
 
         /**
-         * fetch all rovers details from nasa's server
-         * @returns {Promise<void>} - updates the module rovers data object
+         * Function to fetch data about NASA's rovers
+         * @returns {Promise} - Updates the module rovers data object
          */
         const getRoversData = async function () {
 
@@ -111,9 +112,9 @@ export const api = (function () {
         }
 
         /**
-         * adds photo to saved list
-         * @param event - the saved button click event
-         * @returns {Promise<void>} -
+         * Function to add a photo to the saved list
+         * @param {Event} event - The saved button click event
+         * @returns {Promise} - Updates the saved list and the server
          */
         async function savePhoto(event) {
 
@@ -150,8 +151,8 @@ export const api = (function () {
 
 
         /**
-         * delete all saved data html and create again
-         * @returns {Promise<void>} -updates the html
+         * Function to refresh the HTML list of saved photos
+         * @returns {Promise} - Updates the HTML list
          */
         const refreshSavedList = async function () {
 
@@ -193,9 +194,9 @@ export const api = (function () {
         }
 
         /**
-         * delete saved photo/clears all saved photos from db and remove html element
-         * @param event - the saved photo remove button/clear list button
-         * @returns {Promise<void>} - updates db + html
+         * Function to delete a saved photo from the saved list
+         * @param {Event} event - The saved photo remove button/clear list button
+         * @returns {Promise} - Updates the server and HTML list
          */
         const deletePhoto = async function (event) {
 

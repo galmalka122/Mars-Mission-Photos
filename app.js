@@ -21,54 +21,73 @@ app.set('view engine', 'ejs');
 app.set('layout', 'layouts/layout');
 app.use(expressLayout);
 
+// Setting up body parser
 app.use(body.json());
+
+// Setting up logger for development
 app.use(logger('dev'));
+
+// Parsing incoming requests with JSON payloads
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+
+// Parsing incoming requests with urlencoded payloads
+app.use(express.urlencoded({ extended: false }));
+
+// Parsing cookies
 app.use(cookieParser());
+
+// Serving static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Creating a Sequelize instance for database operations
 var sequelize = new Sequelize(
     config.database,
     config.username,
     config.password,
     config
 );
-// initalize sequelize with session store
+
+// Initializing Sequelize with session store
 var SequelizeStore = require('connect-session-sequelize')(session.Store);
 var myStore = new SequelizeStore({
-  db: sequelize
+    db: sequelize
 });
-// enable sessions
-app.use(session({
-  secret: "supercalifragilisticexpialidocious",
-  store: myStore,
-  resave: false, // Force save of session for each request
-  saveUninitialized: false, // Save a session that is new, but has not been modified
-  cookie: {maxAge: 10 * 60 * 60 * 1000}, // milliseconds!
-  proxy: true
-}));
-myStore.sync(); // this creates the session tables in your database
 
+// Enabling sessions
+app.use(session({
+    secret: "supercalifragilisticexpialidocious",
+    store: myStore,
+    resave: false, // Force save of session for each request
+    saveUninitialized: false, // Save a session that is new, but has not been modified
+    cookie: { maxAge: 10 * 60 * 60 * 1000 }, // milliseconds!
+    proxy: true
+}));
+
+// Syncing the session store with the database
+myStore.sync();
+
+// Using routes for different paths
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
 app.use('/nasaAPI', nasaAPIRouter);
 
-// catch 404 and forward to error handler
+// Catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
-// error handler
+// Error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // Set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // Render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
+
+// Exporting the express app for use in other files
 module.exports = app;

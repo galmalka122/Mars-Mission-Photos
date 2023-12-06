@@ -4,11 +4,13 @@ const controller = require('../controllers/loginAPIController');
 
 router.use(controller.preventPage);
 
-//logout request
+// Route for handling logout requests (POST method)
 router.post('/', (req, res) => {
+    // Destroying the session and redirecting to the home page
+    req.session.destroy(() => {
+        res.redirect('/');
+    });
+});
 
-    req.session.destroy(()=>{res.redirect('/')});//remove session and redirect to home page
-
-})
-
+// Exporting the router object to make it available for use in other files
 module.exports = router;
